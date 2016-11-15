@@ -27,6 +27,9 @@ public class MovieInfo extends AppCompatActivity {
         this.url_movie = url_movie;
     }
 
+    public MovieInfo() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
