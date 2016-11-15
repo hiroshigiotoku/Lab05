@@ -1,6 +1,6 @@
 package dam.pucp.edu.pe.catalogodepeliculas.views;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import dam.pucp.edu.pe.catalogodepeliculas.R;
 import dam.pucp.edu.pe.catalogodepeliculas.beans.Pelicula;
 
-public class MovieInfo extends AppCompatActivity {
+public class MovieInfo extends Activity {
     final private String url_base = "http://www.omdbapi.com/?t=";
     private String url_movie;
     final private String url_params = "&plot=short&r=json";
