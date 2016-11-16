@@ -6,10 +6,11 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
@@ -26,7 +27,6 @@ public class MovieInfo extends Activity {
     public MovieInfo(String url_movie) {
         this.url_movie = url_movie;
     }
-
     public MovieInfo() {
     }
 
@@ -53,30 +53,36 @@ public class MovieInfo extends Activity {
         String url = url_base + url_movie + url_params;
         final Pelicula pelicula = new Pelicula();
 
-        StringRequest sr = new StringRequest(url,
-                new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response) {
-                        Log.d("volley", response);
+                    public void onResponse(JSONObject response) {
                         try {
-                            JSONObject json = new JSONObject(response);
-                            String titulo = json.getJSONObject("Title").getString(url_movie);
-                            String anho = json.getJSONObject("Year").getString();
-                            pelicula.setTitle(titulo);
-                            pelicula.setYear(anho);
+                            pelicula.setTitle(response.getString("Title"));
+                            pelicula.setYear(response.getString("Year"));
+                            pelicula.setProductionDate(response.getString("Released"));
+                            pelicula.setDuration(response.getString("Runtime"));
+                            pelicula.setGenre(response.getString("Genre"));
+                            pelicula.setDirector(response.getString("Director"));
+                            pelicula.setWriter(response.getString("Writer"));
+                            pelicula.setActors(response.getString("Actors"));
+                            pelicula.setSummary(response.getString("Plot"));
+                            pelicula.setAwards(response.getString("Awards"));
+                            pelicula.setRating(Double.parseDouble(response.getString("imdbRating")));
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        } catch (JSONException ex) {
+                            ex.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
+
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("volley", "Ocurrió un error!");
             }
         });
 
-        cola.add(sr);
+        cola.add(jsonObjectRequest);
 
         title.setText(pelicula.getTitle());
         year.setText(pelicula.getYear());
