@@ -1,9 +1,8 @@
 package dam.pucp.edu.pe.catalogodepeliculas.views;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -12,30 +11,20 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import dam.pucp.edu.pe.catalogodepeliculas.R;
+import dam.pucp.edu.pe.catalogodepeliculas.beans.Pelicula;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import dam.pucp.edu.pe.catalogodepeliculas.R;
-import dam.pucp.edu.pe.catalogodepeliculas.beans.Pelicula;
-
-public class MovieInfo extends Activity {
-    final private String url_base = "http://www.omdbapi.com/?t=";
-    private String url_movie;
-    final private String url_params = "&plot=short&r=json";
-
-    public MovieInfo(String url_movie) {
-        this.url_movie = url_movie;
-    }
-    public MovieInfo() {
-    }
+public class MovieInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_info);
 
-        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
+        //final ImageView imageView = (ImageView) findViewById(R.id.imageView);
         final TextView title = (TextView) findViewById(R.id.textView);
         final TextView year = (TextView) findViewById(R.id.textView2);
         final TextView fecha_realizacion = (TextView) findViewById(R.id.textView3);
@@ -48,9 +37,8 @@ public class MovieInfo extends Activity {
         final TextView premios = (TextView) findViewById(R.id.textView10);
         final TextView rating = (TextView) findViewById(R.id.textView11);
 
-
         RequestQueue cola = Volley.newRequestQueue(getApplicationContext());
-        String url = url_base + url_movie + url_params;
+        String url = "http://www.omdbapi.com/?t=["+"nemo"+"]&plot=short&r=json";
         final Pelicula pelicula = new Pelicula();
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null,
@@ -74,13 +62,14 @@ public class MovieInfo extends Activity {
                             ex.printStackTrace();
                         }
                     }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("volley", "Ocurrió un error!");
-            }
-        });
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("volley", "Ocurrio un error!");
+                    }
+                 }
+        );
 
         cola.add(jsonObjectRequest);
 
@@ -95,5 +84,6 @@ public class MovieInfo extends Activity {
         resumen.setText(pelicula.getSummary());
         premios.setText(pelicula.getAwards());
         rating.setText(pelicula.getRating().toString());
+
     }
 }

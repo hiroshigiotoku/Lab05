@@ -1,11 +1,11 @@
 package dam.pucp.edu.pe.catalogodepeliculas.views;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import dam.pucp.edu.pe.catalogodepeliculas.R;
 
-public class ViewBestMovies extends Activity {
+public class ViewBestMovies extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

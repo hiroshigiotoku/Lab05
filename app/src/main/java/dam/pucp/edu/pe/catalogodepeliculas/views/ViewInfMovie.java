@@ -1,26 +1,16 @@
 package dam.pucp.edu.pe.catalogodepeliculas.views;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import dam.pucp.edu.pe.catalogodepeliculas.R;
 import dam.pucp.edu.pe.catalogodepeliculas.adapters.ImageAdapter;
 
-public class ViewInfMovie extends Activity {
+public class ViewInfMovie extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +20,12 @@ public class ViewInfMovie extends Activity {
         GridView gridView = (GridView) findViewById(R.id.gridView);
         gridView.setAdapter(new ImageAdapter(this));
 
-
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(ViewInfMovie.this, MovieInfo.class);
+                startActivity(intent);
+            }
+        });
     }
 }
