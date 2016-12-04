@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "711124250379",
+    "firebase_url": "https://lab05-48e52.firebaseio.com",
+    "project_id": "lab05-48e52",
+    "storage_bucket": "lab05-48e52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711124250379:android:9fc1f7ce7cce0336",
+        "android_client_info": {
+          "package_name": "dam.pucp.edu.pe.catalogodepeliculas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711124250379-5n0nsoh0o6jtfihks3orbf8c3hgb78e1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "dam.pucp.edu.pe.catalogodepeliculas",
+            "certificate_hash": "01BBBC11475AC50F62237B0D4D104115047AE09A"
+          }
+        },
+        {
+          "client_id": "711124250379-qc4h4pk140tqk3sfnhe85e3pr49dpjs4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5dg9theKBorjbtIBjFEdJVbl3UO3U94w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711124250379-qc4h4pk140tqk3sfnhe85e3pr49dpjs4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
